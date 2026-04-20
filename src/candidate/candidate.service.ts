@@ -105,6 +105,8 @@ export class CandidateService {
         data: {
           id,
           zaloId,
+          email: `zalo_${zaloId}@placeholder.local`,
+          dob: new Date('2000-01-01'),
           fullName: dto.fullName || '',
           avatarUrl: dto.avatarUrl || null,
           profileStatus: 'linked',
