@@ -1,0 +1,866 @@
+{
+"id": "c786fc68-2695-410b-9883-fc0773d645d1",
+"title": "Trường Đại học Kiến trúc Đà Nẵng chính thức tổ chức kỳ thi Đánh giá năng lực mỹ thuật 2026 dành cho thí sinh xét tuyển vào các ngành: Kiến trúc, Thiết kế nội thất, Thiết kế đồ họa.",
+"summary": "Trường Đại học Kiến trúc Đà Nẵng tổ chức thi Đánh giá năng lực mỹ thuật cho thí sinh đăng ký xét tuyển (ĐKXT) vào 3 ngành đào tạo đại học hệ chính quy năm 2026: (1) Kiến trúc, (2) Thiết kế nội thất, (3) Thiết kế đồ họa.",
+"content": [
+{
+"id": "e88c10c6-37f4-41a6-929c-d2fad5eae05e",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "1. Nội dung thi và thời gian làm bài thi",
+"styles": {
+"bold": true,
+"textColor": "red"
+}
+}
+],
+"children": []
+},
+{
+"id": "56601f1c-a924-429c-9535-4054737b8d3b",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "Kỳ thi Đánh giá năng lực mỹ thuật tại Trường Đại học Kiến trúc Đà Nẵng gồm 2 nội dung:",
+"styles": {}
+}
+],
+"children": []
+},
+{
+"id": "2d220ce2-a57f-4170-b7a7-74b4fc6773dd",
+"type": "bulletListItem",
+"props": {
+"backgroundColor": "default",
+"textColor": "default",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "Nội dung 1 (chiếm 50% điểm số):",
+"styles": {
+"bold": true,
+"textColor": "rgb(0, 0, 255)"
+}
+},
+{
+"type": "text",
+"text": " Thi ",
+"styles": {}
+},
+{
+"type": "text",
+"text": "Đánh giá năng lực mỹ thuật",
+"styles": {
+"bold": true
+}
+},
+{
+"type": "text",
+"text": " bằng phương pháp trắc nghiệm trên máy tính; thời gian làm bài: 50 phút",
+"styles": {}
+}
+],
+"children": []
+},
+{
+"id": "7420f21f-c430-4fd6-b550-8a680a6c7623",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "       Thí sinh truy cập địa chỉ",
+"styles": {}
+},
+{
+"type": "text",
+"text": " ",
+"styles": {
+"textColor": "blue"
+}
+},
+{
+"type": "link",
+"href": "https://thivemythuat.dau.edu.vn",
+"content": [
+{
+"type": "text",
+"text": "https://thivemythuat.dau.edu.vn",
+"styles": {
+"bold": true,
+"underline": true,
+"textColor": "blue"
+}
+}
+]
+},
+{
+"type": "text",
+"text": " ",
+"styles": {
+"bold": true,
+"underline": true,
+"textColor": "blue"
+}
+},
+{
+"type": "text",
+"text": "để xem video hướng dẫn và làm bài thi thử Đánh giá năng lực mỹ thuật bằng phương pháp trắc nghiệm.",
+"styles": {}
+}
+],
+"children": []
+},
+{
+"id": "98e29999-8f31-41df-8c59-8599f4180ce2",
+"type": "bulletListItem",
+"props": {
+"backgroundColor": "default",
+"textColor": "default",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "Nội dung 2 (chiếm 50% điểm số):",
+"styles": {
+"bold": true,
+"textColor": "rgb(0, 0, 255)"
+}
+},
+{
+"type": "text",
+"text": " ",
+"styles": {
+"bold": true
+}
+},
+{
+"type": "text",
+"text": "Làm bài thi ",
+"styles": {}
+},
+{
+"type": "text",
+"text": "Vẽ mỹ thuật",
+"styles": {
+"bold": true
+}
+},
+{
+"type": "text",
+"text": " (Vẽ tĩnh vật bằng bút chì đen trên giấy thi khổ A3); thời gian làm bài: 180 phút.",
+"styles": {}
+}
+],
+"children": []
+},
+{
+"id": "1f3a4db6-33e8-4af5-96a5-79944dd896f6",
+"type": "bulletListItem",
+"props": {
+"backgroundColor": "default",
+"textColor": "default",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "Lưu  ý: Thí sinh phải hoàn thành đầy đủ 2 nội dung thi ở trên mới được công nhận điểm để xét tuyển. ",
+"styles": {
+"bold": true
+}
+}
+],
+"children": []
+},
+{
+"id": "90bfd1dd-a74a-4f0d-a801-98c40f09848a",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "2. Hình thức đăng ký dự thi:",
+"styles": {
+"bold": true,
+"textColor": "red"
+}
+}
+],
+"children": []
+},
+{
+"id": "1d60a8f4-c23a-4a9a-a2a9-a42e0a0fb492",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "Thí sinh đăng ký trực tuyến tại link sau: ",
+"styles": {}
+},
+{
+"type": "link",
+"href": "https://vemythuat.dau.edu.vn",
+"content": [
+{
+"type": "text",
+"text": "https://vemythuat.dau.edu.vn",
+"styles": {
+"bold": true,
+"underline": true,
+"textColor": "blue"
+}
+}
+]
+}
+],
+"children": []
+},
+{
+"id": "9dff78f5-ea2b-4195-aa85-33e25e8f884c",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "3. Ngày, giờ thi và địa điểm",
+"styles": {
+"bold": true,
+"textColor": "red"
+}
+}
+],
+"children": []
+},
+{
+"id": "87e555a7-fc66-4075-ab9c-1927c9287c75",
+"type": "image",
+"props": {
+"textAlignment": "center",
+"backgroundColor": "default",
+"name": "thi ve my thuat 1.png",
+"url": "https://cms-api.ktd.edu.vn/uploads/ADMS/2026-04/65c7a489-ff6c-4402-aa96-8991431f84e1.webp",
+"caption": "",
+"showPreview": true
+},
+"children": []
+},
+{
+"id": "fd0b9338-780e-43a1-91f5-a25bbd000e66",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "Địa điểm thi: ",
+"styles": {}
+},
+{
+"type": "text",
+"text": "Trường Đại học Kiến trúc Đà Nẵng, 566 Núi Thành, P.Hòa Cường, TP. Đà Nẵng.",
+"styles": {
+"bold": true
+}
+}
+],
+"children": []
+},
+{
+"id": "f071058f-7769-46c9-afee-ae5199d0c503",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "4. Hồ sơ đăng ký dự thi",
+"styles": {
+"bold": true,
+"textColor": "rgb(192, 57, 43)"
+}
+}
+],
+"children": []
+},
+{
+"id": "b7aa0ebe-0038-4ed5-af7f-f65a14480cb1",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "  Hồ sơ đăng ký dự thi (ĐKDT) gồm có:",
+"styles": {}
+}
+],
+"children": []
+},
+{
+"id": "970d3934-4b88-4a28-8a96-fcb532d61e39",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "       - Phiếu ĐKDT (thí sinh in ra, sau khi đăng ký trực tuyến thành công theo đường dẫn  ",
+"styles": {}
+},
+{
+"type": "link",
+"href": "https://vemythuat.dau.edu.vn",
+"content": [
+{
+"type": "text",
+"text": "https://vemythuat.dau.edu.vn",
+"styles": {
+"bold": true,
+"underline": true,
+"textColor": "rgb(0, 0, 255)"
+}
+}
+]
+},
+{
+"type": "text",
+"text": " của Trường Đại học Kiến trúc Đà Nẵng);  ",
+"styles": {}
+}
+],
+"children": []
+},
+{
+"id": "d343ca21-11de-4f75-9e5f-fd1c74d3adbc",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "       -  Ba ảnh 3×4 (ghi rõ họ tên, ngày sinh, nơi sinh ở mặt sau của ảnh).",
+"styles": {}
+}
+],
+"children": []
+},
+{
+"id": "9a92bae2-22f3-439e-b59f-9887f700c1ed",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "5. Thủ tục nộp hồ sơ ĐKDT và lệ phí thi",
+"styles": {
+"bold": true,
+"textColor": "rgb(192, 57, 43)"
+}
+}
+],
+"children": []
+},
+{
+"id": "a00fb1be-ebf2-4fff-9aa3-cbf0571b6ef6",
+"type": "bulletListItem",
+"props": {
+"backgroundColor": "default",
+"textColor": "default",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "Thời gian nộp hồ sơ ĐKDT: ",
+"styles": {}
+},
+{
+"type": "text",
+"text": "Từ ngày 25/03/2025 đến 17h00 ngày 08/06/2026.",
+"styles": {
+"bold": true,
+"textColor": "red"
+}
+},
+{
+"type": "text",
+"text": " Thí sinh nộp hồ sơ ĐKDT trực tiếp tại Phòng Đào tạo của Trường, hoặc gửi qua đường bưu điện chuyển phát nhanh theo địa chỉ: Phòng Đào tạo, Trường Đại học Kiến trúc Đà Nẵng, 566 Núi Thành, P.Hòa Cường, TP. Đà Nẵng.",
+"styles": {}
+}
+],
+"children": []
+},
+{
+"id": "ee40fbdc-1ac0-47df-a5fa-fc910aff7dee",
+"type": "bulletListItem",
+"props": {
+"backgroundColor": "default",
+"textColor": "default",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "Lệ phí thi: ",
+"styles": {}
+},
+{
+"type": "text",
+"text": "500.000 đồng/hồ sơ",
+"styles": {
+"bold": true
+}
+},
+{
+"type": "text",
+"text": ";",
+"styles": {}
+}
+],
+"children": []
+},
+{
+"id": "1444d090-29b0-490e-92c8-04e25a5e5e13",
+"type": "bulletListItem",
+"props": {
+"backgroundColor": "default",
+"textColor": "default",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "Thời gian nộp lệ phí: ",
+"styles": {}
+},
+{
+"type": "text",
+"text": "trước 17h00 ngày 10/06/2026",
+"styles": {
+"bold": true,
+"textColor": "rgb(0, 0, 255)"
+}
+},
+{
+"type": "text",
+"text": ".",
+"styles": {
+"bold": true
+}
+}
+],
+"children": []
+},
+{
+"id": "dce8292f-6bc0-48cb-9976-93e93559a69d",
+"type": "bulletListItem",
+"props": {
+"backgroundColor": "default",
+"textColor": "default",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "Hình thức nộp: Thí sinh chuyển khoản đến số tài khoản sau:",
+"styles": {}
+}
+],
+"children": []
+},
+{
+"id": "1653b4c0-524e-44fd-a9f3-967de7b12c93",
+"type": "image",
+"props": {
+"textAlignment": "center",
+"backgroundColor": "default",
+"name": "thi ve my thuat 2.png",
+"url": "https://cms-api.ktd.edu.vn/uploads/ADMS/2026-04/52f05572-e599-45e8-87d1-5d82fb9edc02.webp",
+"caption": "",
+"showPreview": true
+},
+"children": []
+},
+{
+"id": "63bfe5af-5402-4a9f-861b-20cf81a0371f",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "6. Tài liệu và dụng cụ thí sinh phải mang theo khi đi thi",
+"styles": {
+"bold": true,
+"textColor": "rgb(192, 57, 43)"
+}
+}
+],
+"children": []
+},
+{
+"id": "18b51d17-a012-41d7-935b-02a7a4b25daa",
+"type": "bulletListItem",
+"props": {
+"backgroundColor": "default",
+"textColor": "default",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "CMND/ CCCD (để cán bộ coi thi kiểm tra đối chiếu);  ",
+"styles": {}
+}
+],
+"children": []
+},
+{
+"id": "bb27ad30-ebb4-4834-99ac-265e74788692",
+"type": "bulletListItem",
+"props": {
+"backgroundColor": "default",
+"textColor": "default",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "Bảng vẽ; Ghế ngồi vẽ;",
+"styles": {}
+}
+],
+"children": []
+},
+{
+"id": "eb370022-df30-408a-8baa-b4a241408a76",
+"type": "bulletListItem",
+"props": {
+"backgroundColor": "default",
+"textColor": "default",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "Bút bi có mực màu xanh hoặc tím để viết các thông tin cá nhân vào giấy thi;",
+"styles": {}
+}
+],
+"children": []
+},
+{
+"id": "fc80d98e-f5da-48ad-8d9b-0e3cc3d2deb7",
+"type": "bulletListItem",
+"props": {
+"backgroundColor": "default",
+"textColor": "default",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "Các dụng cụ cần thiết để vẽ (không được dùng chì màu, chì than).",
+"styles": {}
+}
+],
+"children": []
+},
+{
+"id": "040a82a9-e6c2-45ce-8632-d1172af62047",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "Lưu ý:",
+"styles": {
+"underline": true
+}
+},
+{
+"type": "text",
+"text": " Giấy thi vẽ do Nhà trường cung cấp cho thí sinh.",
+"styles": {}
+}
+],
+"children": []
+},
+{
+"id": "965fb4c2-f03c-43a0-bc36-9ebd904e932d",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "7. Công bố kết quả thi",
+"styles": {
+"bold": true,
+"textColor": "rgb(192, 57, 43)"
+}
+}
+],
+"children": []
+},
+{
+"id": "634dd44a-dd14-4025-8326-deabe634ddd0",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "Kết quả thi Đánh giá năng lực mỹ thuật năm 2026 sẽ được công bố trước ",
+"styles": {}
+},
+{
+"type": "text",
+"text": "17h00 ngày 26/06/2026",
+"styles": {
+"bold": true
+}
+},
+{
+"type": "text",
+"text": ".",
+"styles": {}
+}
+],
+"children": []
+},
+{
+"id": "28d994e5-60af-42b4-b5dc-c9493c350267",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "Thí sinh có thể xem các thông tin tuyển sinh liên quan tại trang thông tin điện tử của Trường Đại học Kiến trúc Đà Nẵng: ",
+"styles": {}
+},
+{
+"type": "link",
+"href": "http://tuyensinh.dau.edu.vn",
+"content": [
+{
+"type": "text",
+"text": "tuyensinh.dau.edu.vn",
+"styles": {
+"bold": true,
+"underline": true,
+"textColor": "rgb(0, 0, 255)"
+}
+}
+]
+},
+{
+"type": "text",
+"text": ";",
+"styles": {
+"bold": true
+}
+},
+{
+"type": "text",
+"text": " hoặc tại trang thông tin của kỳ thi: ",
+"styles": {}
+},
+{
+"type": "link",
+"href": "https://vemythuat.dau.edu.vn",
+"content": [
+{
+"type": "text",
+"text": "https://vemythuat.dau.edu.vn",
+"styles": {
+"bold": true,
+"underline": true,
+"textColor": "red"
+}
+}
+]
+},
+{
+"type": "text",
+"text": ";",
+"styles": {
+"bold": true,
+"textColor": "red"
+}
+},
+{
+"type": "text",
+"text": " hoặc gọi điện thoại để biết thêm chi tiết: 19007466.",
+"styles": {}
+}
+],
+"children": []
+},
+{
+"id": "27b2ff44-5594-4e32-811f-a14120ae64b7",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "justify"
+},
+"content": [
+{
+"type": "text",
+"text": "Ghi chú: ",
+"styles": {
+"bold": true
+}
+},
+{
+"type": "text",
+"text": "Trường Đại học Kiến trúc Đà Nẵng chấp nhận kết quả thi môn Vẽ mỹ thuật năm 2026 (hoặc môn Hình họa, Bố cục màu) của thí sinh đã dự thi môn này tại các Trường đại học có tên theo bảng bên dưới./.",
+"styles": {
+"bold": true,
+"italic": true,
+"textColor": "rgb(0, 0, 255)"
+}
+}
+],
+"children": []
+},
+{
+"id": "a9b6bf65-936e-4537-b130-fc4bce7e422e",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "center"
+},
+"content": [
+{
+"type": "text",
+"text": "DANH SÁCH CÁC CƠ SỞ GIÁO DỤC ĐẠI HỌC CÓ KẾT QUẢ THI MÔN VẼ MỸ THUẬT",
+"styles": {
+"bold": true,
+"textColor": "red"
+}
+}
+],
+"children": []
+},
+{
+"id": "4d6aea94-05ae-4c9f-ae33-463871c61866",
+"type": "paragraph",
+"props": {
+"backgroundColor": "rgb(255, 255, 255)",
+"textColor": "rgb(51, 51, 51)",
+"textAlignment": "center"
+},
+"content": [
+{
+"type": "text",
+"text": "ĐƯỢC CÔNG NHẬN ĐỂ XÉT TUYỂN VÀO TRƯỜNG ĐẠI HỌC KIẾN TRÚC ĐÀ NẴNG 2026",
+"styles": {
+"bold": true,
+"textColor": "red"
+}
+}
+],
+"children": []
+},
+{
+"id": "644ec1f7-8825-4747-88ee-0e9a7597130c",
+"type": "image",
+"props": {
+"textAlignment": "center",
+"backgroundColor": "default",
+"name": "thi ve my thuat 3.png",
+"url": "https://cms-api.ktd.edu.vn/uploads/ADMS/2026-04/9d552151-95ad-4f4c-8c9f-44672ec7dc28.webp",
+"caption": "",
+"showPreview": true
+},
+"children": []
+},
+{
+"id": "38886ef0-a7f8-4a5e-b3a0-3b14b1120523",
+"type": "paragraph",
+"props": {
+"backgroundColor": "default",
+"textColor": "default",
+"textAlignment": "left"
+},
+"content": [],
+"children": []
+}
+],
+"contentFormat": "blocknote",
+"thumbnail": "https://cms-api.ktd.edu.vn/uploads/ADMS/2026-04/dd4be4d8-436a-4027-a2fa-b12c255e52eb.webp",
+"publishedAt": "2026-04-02T03:46:57.753Z"
+}

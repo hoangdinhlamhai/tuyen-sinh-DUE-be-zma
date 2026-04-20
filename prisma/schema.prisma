@@ -1,0 +1,303 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// 1. Majors (Ngành đào tạo)
+model Major {
+  id                   String   @id @db.VarChar(30)
+  name                 String   @db.VarChar(100)
+  minScore             Float?   @map("min_score")
+  isActive             Int      @default(1) @map("is_active") @db.SmallInt
+  scholarshipGroupId   String?  @map("scholarship_group_id") @db.VarChar(20)
+  createdAt            DateTime @default(now()) @map("created_at")
+
+  @@map("majors")
+}
+
+// 2. Provinces (Tỉnh/Thành phố)
+model Province {
+  id        String   @id @db.VarChar(10)
+  name      String   @db.VarChar(100)
+  region    String?  @db.VarChar(50)
+
+  highSchools HighSchool[]
+  wards       Ward[]
+  candidates  Candidate[]
+  registrations ArtExamRegistration[]
+
+  @@map("provinces")
+}
+
+// 3. High Schools (Trường THPT)
+model HighSchool {
+  id           String   @id @db.VarChar(20)
+  name         String   @db.VarChar(255)
+  provinceCode String   @map("province_code") @db.VarChar(10)
+  code         String?  @db.VarChar(20)
+
+  province     Province @relation(fields: [provinceCode], references: [id])
+
+  @@map("high_schools")
+}
+
+// 3b. Wards (Phường/Xã)
+model Ward {
+  id           String   @id @db.VarChar(20)
+  name         String   @db.VarChar(255)
+  provinceCode String   @map("province_code") @db.VarChar(10)
+
+  province     Province @relation(fields: [provinceCode], references: [id])
+
+  @@map("wards")
+}
+
+// 4. Candidates (Thí sinh - Bảng core)
+model Candidate {
+  id                String   @id @db.VarChar(20)
+  zaloId            String?  @unique @map("zalo_id") @db.VarChar(50)
+  email             String   @unique @db.VarChar(255)
+  fullName          String   @map("full_name") @db.VarChar(255)
+  dob               DateTime @db.Date
+  gender            String?  @db.VarChar(10)
+  idCard            String?  @map("id_card") @db.VarChar(20)
+  phone             String?  @db.VarChar(20)
+  contact           String?  @db.VarChar(20)
+  
+  province          String?  @db.VarChar(100)
+  provinceCode      String?  @map("province_code") @db.VarChar(10)
+  highSchool        String?  @map("high_school") @db.VarChar(255)
+  highSchoolCode    String?  @map("high_school_code") @db.VarChar(20)
+  address           String?  @db.Text
+  ward              String?  @db.VarChar(100)
+  
+  artExamMajor      String?  @map("art_exam_major") @db.Text
+  artExamStatus     String   @default("not_registered") @map("art_exam_status") @db.VarChar(30)
+  finalMajor        String?  @map("final_major") @db.VarChar(100)
+  scholarshipInterest Boolean @default(false) @map("scholarship_interest")
+  
+  profileStatus     String   @default("pending") @map("profile_status") @db.VarChar(20)
+  avatarUrl         String?  @map("avatar_url") @db.Text
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  provinceRef       Province? @relation(fields: [provinceCode], references: [id])
+  registrations     ArtExamRegistration[]
+  payments          Payment[]
+  tarotSessions     TarotSession[]
+  documents         CandidateDocument[]
+
+  @@map("candidates")
+}
+
+// 5. Art Exam Registrations (Đăng ký hồ sơ thi MT)
+model ArtExamRegistration {
+  id                Int      @id @default(autoincrement())
+  candidateId       String   @map("candidate_id") @db.VarChar(20)
+  email             String   @db.VarChar(255)
+  fullName          String   @map("full_name") @db.VarChar(255)
+  phone             String?  @db.VarChar(20)
+  idCard            String?  @map("id_card") @db.VarChar(20)
+  dob               DateTime? @db.Date
+  gender            String?  @db.VarChar(10)
+  highSchool        String?  @map("high_school") @db.VarChar(255)
+  highSchoolCode    String?  @map("high_school_code") @db.VarChar(20)
+  province          String?  @db.VarChar(100)
+  provinceCode      String?  @map("province_code") @db.VarChar(10)
+  address           String?  @db.Text
+  ward              String?  @db.VarChar(100)
+  
+  majorChoice       String   @map("major_choice") @db.Text
+  
+  contactProvinceCode String? @map("contact_province_code") @db.VarChar(10)
+  contactProvince     String? @map("contact_province") @db.VarChar(100)
+  
+  registrationStatus String @default("pending") @map("registration_status") @db.VarChar(30)
+  
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  candidate         Candidate @relation(fields: [candidateId], references: [id])
+  provinceRef       Province? @relation(fields: [provinceCode], references: [id])
+  payments          Payment[]
+
+  @@map("art_exam_registrations")
+}
+
+// 6. Payments (Thanh toán Lệ phí thi)
+model Payment {
+  id              Int      @id @default(autoincrement())
+  candidateId     String   @map("candidate_id") @db.VarChar(20)
+  registrationId  Int?     @map("registration_id")
+  paymentRef      String?  @map("payment_ref") @db.VarChar(100)
+  paymentProof    String?  @map("payment_proof") @db.Text
+  amount          Int      @default(500000)
+  bankName        String?  @map("bank_name") @db.VarChar(100)
+  bankAccount     String?  @map("bank_account") @db.VarChar(30)
+  status          String   @default("pending") @db.VarChar(20)
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  candidate       Candidate @relation(fields: [candidateId], references: [id])
+  registration    ArtExamRegistration? @relation(fields: [registrationId], references: [id])
+
+  @@map("payments")
+}
+
+// 7a. Tarot Cards (Bộ bài Tarot)
+model TarotCard {
+  id                   Int      @id @default(autoincrement())
+  name                 String   @db.VarChar(100) // "THE MAGICIAN"
+  cardTitle            String   @map("card_title") @db.VarChar(100) // "The Magician"
+  subtitle             String?  @db.VarChar(255) // "I - Nhà Ảo Thuật"
+  oracleText           String?  @map("oracle_text") @db.Text
+  meaning              String?  @db.Text
+  fullMeaning          String?  @map("full_meaning") @db.Text
+  luckyTag             String?  @map("lucky_tag") @db.VarChar(100)
+  suggestedMajors      Json?    @map("suggested_majors")
+  universityHighlights Json?    @map("university_highlights")
+  imageUrl             String?  @map("image_url") @db.VarChar(500)
+  isActive             Boolean  @default(true) @map("is_active")
+
+  sessions             TarotSession[]
+
+  @@map("tarot_card")
+}
+
+// 7b. Tarot Sessions (Game bốc bài trúng quà)
+model TarotSession {
+  id              Int      @id @default(autoincrement())
+  playId          Int?     @unique @map("play_id")
+  sessionToken    String?  @map("session_token") @db.VarChar(255)
+  candidateId     String?  @map("candidate_id") @db.VarChar(20)
+  zaloUserId      String?  @map("zalo_user_id") @db.VarChar(50)
+  playerName      String?  @map("player_name") @db.VarChar(100)
+  
+  cardId          Int?     @map("card_id")
+  tarotCardId     String?  @map("tarot_card_id") @db.VarChar(100)
+  tarotCardName   String?  @map("tarot_card_name") @db.VarChar(100)
+  tarotImageUrl   String?  @map("tarot_image_url") @db.Text
+  shortMeaning    String?  @map("short_meaning") @db.VarChar(255)
+  category        String?  @db.VarChar(50)
+  comment         String?  @db.Text
+  oracleText      String?  @map("oracle_text") @db.Text
+  
+  isWin           Boolean  @default(false) @map("is_win")
+  giftId          Int?     @map("gift_id")
+  giftName        String?  @map("gift_name") @db.VarChar(255)
+  giftType        String?  @map("gift_type") @db.VarChar(50)
+  giftImageUrl    String?  @map("gift_image_url") @db.Text
+
+  isClaimed       Boolean  @default(false) @map("is_claimed")
+  claimedAt       DateTime? @map("claimed_at")
+
+  suggestedMajors  Json?    @map("suggested_majors")
+  schoolHighlights Json?    @map("school_highlights")
+
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  card            TarotCard? @relation(fields: [cardId], references: [id])
+  candidate       Candidate? @relation(fields: [candidateId], references: [id])
+  gift            Gift?      @relation(fields: [giftId], references: [id])
+
+  @@map("tarot_sessions")
+}
+
+// 7c. Quà tặng (Gifts)
+model Gift {
+  id                Int      @id @default(autoincrement())
+  name              String   @db.VarChar(255)
+  type              String   @db.VarChar(50)  // PHYSICAL, VOUCHER, DIGITAL...
+  imageUrl          String?  @map("image_url") @db.Text
+  totalQuantity     Int      @default(0) @map("total_quantity")
+  remainingQuantity Int      @default(0) @map("remaining_quantity")
+  winProbability    Float    @default(0) @map("win_probability") // Xác suất trúng 0.0 - 1.0
+  isActive          Boolean  @default(true) @map("is_active")
+
+  sessions          TarotSession[]
+
+  @@map("gifts")
+}
+
+// 8. Scholarships (Học bổng)
+model Scholarship {
+  id              Int      @id @default(autoincrement())
+  title           String   @db.VarChar(255)
+  amount          String?  @db.VarChar(100)
+  description     String?  @db.Text
+  targetAudience  String?  @map("target_audience") @db.Text
+  conditions      String?  @db.Text
+  detailContent   Json?    @map("detail_content")
+  icon            String?  @db.VarChar(50)
+  color           String?  @db.VarChar(100)
+  isActive        Boolean  @default(true) @map("is_active")
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  @@map("scholarships")
+}
+
+// 9. App Config
+model AppConfig {
+  key             String   @id @db.VarChar(100)
+  value           String   @db.Text
+  updatedAt       DateTime @default(now()) @updatedAt @map("updated_at")
+
+  @@map("app_config")
+}
+
+// 10. CMS News
+model CmsNews {
+  id              String   @id @db.Uuid
+  title           String?  @db.VarChar(255)
+  summary         String?  @db.Text
+  thumbnail       String?  @db.Text
+  slug            String?  @unique @db.VarChar(255)
+  content         Json?    @db.JsonB
+  contentFormat   String?  @map("content_format") @db.VarChar(50)
+  publishedAt     DateTime @default(now()) @map("published_at")
+
+  @@map("cms_news")
+}
+
+// 11. CMS FAQ
+model CmsFaq {
+  id              Int      @id @default(autoincrement())
+  title           String?  @db.VarChar(255)
+  summary         String?  @db.Text
+  content         String?  @db.Text
+  icon            String?  @db.VarChar(50)
+
+  @@map("cms_faq")
+}
+
+// 12. CMS Stats
+model CmsStat {
+  id              String   @id @db.VarChar(50)
+  label           String?  @db.VarChar(255)
+  number          Int?
+  suffix          String?  @db.VarChar(10)
+  type            String?  @db.VarChar(20)
+  iconName        String?  @map("icon_name") @db.VarChar(50)
+
+  @@map("cms_stats")
+}
+
+// 13. Candidate Documents
+model CandidateDocument {
+  id              Int      @id @default(autoincrement())
+  candidateId     String   @map("candidate_id") @db.VarChar(20)
+  type            String   @db.VarChar(50)
+  fileUrl         String   @map("file_url") @db.Text
+  filePath        String?  @map("file_path") @db.Text
+  uploadedAt      DateTime @default(now()) @map("uploaded_at")
+
+  candidate       Candidate @relation(fields: [candidateId], references: [id])
+
+  @@map("candidate_documents")
+}

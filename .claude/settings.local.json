@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:3000/api/public/news)",
+      "Bash(curl -s http://localhost:3002/api/public/news)",
+      "Bash(python -c \"import sys,json; data=json.load\\(sys.stdin\\); [print\\(json.dumps\\({'id':d['id'],'contentFormat':d['contentFormat'],'slug':d.get\\('slug',''\\)},indent=2\\)\\) for d in data['data'][:3]]\")",
+      "Bash(curl -s \"http://localhost:3002/api/public/news/f3b35e9c-9a84-4e48-abc4-ca673b96f4a1\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('contentFormat:', d.get\\('contentFormat'\\)\\); c=d.get\\('content',''\\); print\\('content type:', type\\(c\\).__name__\\); print\\('content preview:', json.dumps\\(c, ensure_ascii=False\\)[:500] if c else 'None'\\)\")",
+      "Bash(curl -s \"http://localhost:3002/api/public/news/14271d4d-e49d-4e35-bc68-6665dad8db52\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('contentFormat:', d.get\\('contentFormat'\\)\\); c=d.get\\('content',''\\); print\\('content type:', type\\(c\\).__name__\\); print\\('content preview:', json.dumps\\(c, ensure_ascii=False\\)[:1000] if c else 'None'\\)\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d, ensure_ascii=False, indent=2\\)\\)\")",
+      "Bash(npx prisma *)",
+      "Bash(node *)",
+      "Bash(curl -s http://localhost:3002/api/public/faq)",
+      "Bash(netstat -ano)",
+      "Bash(findstr \":3002\")",
+      "Bash(findstr LISTENING)",
+      "Bash(npm run *)",
+      "Bash(taskkill /F /IM node.exe)"
+    ]
+  }
+}
