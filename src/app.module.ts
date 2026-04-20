@@ -7,6 +7,7 @@ import { FaqModule } from './faq/faq.module';
 import { TarotModule } from './tarot/tarot.module';
 import { CandidateModule } from './candidate/candidate.module';
 import { CatalogsModule } from './catalogs/catalogs.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { CatalogsModule } from './catalogs/catalogs.module';
     TarotModule,
     CandidateModule,
     CatalogsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

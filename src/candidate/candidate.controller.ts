@@ -7,7 +7,10 @@ import {
   Param,
   Headers,
   BadRequestException,
+  UseGuards,
+  Request,
 } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CandidateService } from './candidate.service';
 import { CheckEmailDto } from './dto/check-email.dto';
 import { RegisterDto } from './dto/register.dto';
@@ -27,23 +30,19 @@ export class CandidateController {
     return this.candidateService.register(dto);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Get('me')
-  getMe(@Headers('x-zalo-id') zaloId: string) {
-    if (!zaloId) {
-      throw new BadRequestException('x-zalo-id header is required');
-    }
-    return this.candidateService.getByZaloId(zaloId);
+  getMe(@Request() req: { user: { candidateId: string } }) {
+    return this.candidateService.getById(req.user.candidateId);
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Patch('me')
   updateMe(
-    @Headers('x-zalo-id') zaloId: string,
+    @Request() req: { user: { candidateId: string } },
     @Body() dto: UpdateProfileDto,
   ) {
-    if (!zaloId) {
-      throw new BadRequestException('x-zalo-id header is required');
-    }
-    return this.candidateService.updateProfile(zaloId, dto);
+    return this.candidateService.updateProfileById(req.user.candidateId, dto);
   }
 
   @Get(':id')

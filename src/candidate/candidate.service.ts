@@ -92,6 +92,17 @@ export class CandidateService {
     return candidate;
   }
 
+  async updateProfileById(candidateId: string, dto: UpdateProfileDto) {
+    return this.prisma.candidate.update({
+      where: { id: candidateId },
+      data: {
+        ...(dto.fullName !== undefined && { fullName: dto.fullName }),
+        ...(dto.avatarUrl !== undefined && { avatarUrl: dto.avatarUrl }),
+        ...(dto.zaloId !== undefined && { zaloId: dto.zaloId }),
+      },
+    });
+  }
+
   async updateProfile(zaloId: string, dto: UpdateProfileDto) {
     const existing = await this.prisma.candidate.findFirst({
       where: { zaloId },
