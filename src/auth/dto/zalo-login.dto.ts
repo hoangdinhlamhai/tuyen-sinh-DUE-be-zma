@@ -15,7 +15,7 @@ export class ZaloProfileDto {
 
 export class ZaloLoginDto {
   @IsString()
-  accessToken: string;
+  authCode: string;
 
   @IsOptional()
   profile?: ZaloProfileDto;

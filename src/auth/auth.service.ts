@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../prisma/prisma.service';
 import { randomUUID } from 'crypto';
@@ -11,16 +11,11 @@ export class AuthService {
   ) {}
 
   async loginWithZalo(
-    accessToken: string,
+    authCode: string,
     zaloProfile?: { zaloId: string; name?: string; avatar?: string },
   ) {
-    console.log('[AuthService] loginWithZalo', {
-      accessToken: !!accessToken,
-      zaloProfile,
-    });
     if (!zaloProfile?.zaloId) {
-      console.log('[AuthService] Missing zaloId, throwing 401');
-      throw new UnauthorizedException('Zalo profile information is required');
+      throw new Error('Zalo profile information is required');
     }
 
     let candidate = await this.prisma.candidate.findFirst({

@@ -1,14 +1,5 @@
-import {
-  Controller,
-  Post,
-  Body,
-  UseGuards,
-  Res,
-  Req,
-  ValidationPipe,
-} from '@nestjs/common';
+import { Controller, Post, Body, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import type { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { ZaloLoginDto } from './dto/zalo-login.dto';
 
@@ -17,34 +8,13 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('zalo')
-  loginWithZalo(
-    @Body(new ValidationPipe({ whitelist: false })) dto: ZaloLoginDto,
-    @Res({ passthrough: true }) res: Response,
-  ) {
-    console.log('[Auth] loginWithZalo dto:', JSON.stringify(dto));
-    const result = this.authService.loginWithZalo(
-      dto.accessToken,
-      dto.profile,
-    ) as any;
-
-    res.cookie('access_token', result.accessToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'none',
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-      path: '/',
-      domain: '.tuyen-sinh-dh-kien-truc-be-zma.vercel.app',
-    });
-    console.log('[Auth] Cookie set, token length:', result.accessToken.length);
-
-    const { accessToken: _accessToken, ...safeData } = result;
-    return safeData;
+  loginWithZalo(@Body() dto: ZaloLoginDto) {
+    return this.authService.loginWithZalo(dto.authCode, dto.profile);
   }
 
   @UseGuards(AuthGuard('jwt'))
   @Post('logout')
-  logout(@Req() _req: Request, @Res({ passthrough: true }) res: Response) {
-    res.clearCookie('access_token');
+  logout() {
     return this.authService.logout();
   }
 }
