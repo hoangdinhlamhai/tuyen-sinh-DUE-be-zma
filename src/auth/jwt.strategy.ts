@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import { ExtractJwt, Strategy } from 'passport-jwt';
+import { Strategy } from 'passport-jwt';
 import { ConfigService } from '@nestjs/config';
 import type { Request } from 'express';
 
@@ -9,36 +9,33 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(configService: ConfigService) {
     super({
       jwtFromRequest: (req: Request) => {
+        console.log('[JwtStrategy] req.cookies:', req.cookies);
+        console.log('[JwtStrategy] headers.cookie:', req.headers.cookie);
+
         let token: string | null = null;
 
-        // Try cookie header directly — manual parse for serverless reliability
-        const cookieHeader = req.headers.cookie as string | undefined;
-        if (cookieHeader) {
-          const match = cookieHeader.match(/(?:^|;\s*)access_token=([^;]*)/);
-          if (match) {
+        // 1. Try req.cookies (requires cookie-parser middleware to run first)
+        if (req.cookies && req.cookies['access_token']) {
+          token = req.cookies['access_token'] as string;
+          console.log('[JwtStrategy] found token in req.cookies');
+        }
+
+        // 2. Fallback: parse manually from raw cookie header
+        if (!token && req.headers.cookie) {
+          const raw: string = req.headers.cookie as string;
+          const match = raw.match(/(?:^|;\s*)access_token=([^;]*)/);
+          if (match && match[1]) {
             token = decodeURIComponent(match[1]);
+            console.log('[JwtStrategy] found token via manual parse');
           }
-          console.log(
-            '[JwtStrategy] raw cookie:',
-            cookieHeader.substring(0, 50),
-          );
-          console.log('[JwtStrategy] parsed token:', !!token);
         }
 
-        // Fallback to parsed cookies object
-        if (!token && req?.cookies?.access_token) {
-          token = req.cookies.access_token as string;
-        }
-
-        // Final fallback to bearer header
-        if (!token) {
-          token = ExtractJwt.fromAuthHeaderAsBearerToken()(req);
-        }
-
+        console.log('[JwtStrategy] final token present:', !!token);
         return token;
       },
       ignoreExpiration: false,
       secretOrKey: configService.get<string>('JWT_SECRET')!,
+      algorithms: ['HS256'],
     });
   }
 
