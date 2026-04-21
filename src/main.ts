@@ -9,7 +9,7 @@ async function bootstrap() {
   app.use(cookieParser());
   app.setGlobalPrefix('api');
   app.enableCors({
-    origin: ['https://h5.zadn.vn', 'http://localhost'],
+    origin: ['https://h5.zadn.vn', 'https://h5.zdn.vn', 'http://localhost'],
     credentials: true,
   });
   app.useGlobalPipes(
