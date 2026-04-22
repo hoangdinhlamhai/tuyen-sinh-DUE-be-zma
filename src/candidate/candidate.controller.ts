@@ -26,8 +26,25 @@ export class CandidateController {
   }
 
   @Post('register')
-  register(@Body() dto: RegisterDto) {
-    return this.candidateService.register(dto);
+  register(@Body() dto: RegisterDto, @Request() req: any) {
+    let loggedInCandidateId: string | undefined = undefined;
+
+    // Parse JWT thủ công nếu có (không bắt buộc login)
+    const authHeader = req.headers.authorization;
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      try {
+        const token = authHeader.split(' ')[1];
+        const payloadBase64 = token.split('.')[1];
+        if (payloadBase64) {
+          const decoded = JSON.parse(Buffer.from(payloadBase64, 'base64').toString('utf8'));
+          loggedInCandidateId = decoded.sub; // sub trong payload là candidate.id
+        }
+      } catch (e) {
+        // Bỏ qua nếu lỗi parse JWT
+      }
+    }
+
+    return this.candidateService.register(dto, loggedInCandidateId);
   }
 
   @UseGuards(AuthGuard('jwt'))

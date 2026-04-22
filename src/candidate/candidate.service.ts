@@ -31,15 +31,48 @@ export class CandidateService {
     };
   }
 
-  async register(dto: RegisterDto) {
-    const existing = await this.prisma.candidate.findUnique({
+  async register(dto: RegisterDto, loggedInCandidateId?: string) {
+    const existingEmail = await this.prisma.candidate.findUnique({
       where: { email: dto.email },
     });
 
-    if (existing) {
-      throw new BadRequestException('Email đã được đăng ký');
+    if (existingEmail && existingEmail.id !== loggedInCandidateId) {
+      throw new BadRequestException('Email đã được đăng ký cho tài khoản khác');
     }
 
+    if (loggedInCandidateId) {
+      // Có account Zalo đang login -> Cập nhật trực tiếp vào record Zalo
+      const existingCandidate = await this.prisma.candidate.findUnique({
+        where: { id: loggedInCandidateId },
+      });
+
+      if (existingCandidate) {
+        await this.prisma.candidate.update({
+          where: { id: loggedInCandidateId },
+          data: {
+            email: dto.email,
+            fullName: dto.fullName,
+            dob: new Date(dto.dob),
+            gender: dto.gender,
+            idCard: dto.idCard,
+            phone: dto.phone,
+            provinceCode: dto.contactProvinceCode,
+            ward: dto.contactWard,
+            address: dto.contactStreet,
+            highSchoolCode: dto.highSchoolCode,
+            profileStatus: existingCandidate.profileStatus === 'linked' ? 'pending' : existingCandidate.profileStatus,
+          },
+        });
+
+        return {
+          success: true,
+          candidateId: loggedInCandidateId,
+          message: 'Cập nhật hồ sơ thành công vào tài khoản Zalo của bạn',
+        };
+      }
+    }
+
+    // Nếu không login thì tạo mới hoàn toàn
     const id = `DAU${new Date().getFullYear()}${randomUUID().slice(0, 6).toUpperCase()}`;
 
     const candidate = await this.prisma.candidate.create({
