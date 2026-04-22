@@ -12,12 +12,12 @@ import { randomUUID } from 'crypto';
 export class CandidateService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async checkByEmail(email: string) {
+  async checkByEmail(email: string, loggedInCandidateId?: string) {
     const candidate = await this.prisma.candidate.findUnique({
       where: { email },
     });
 
-    if (candidate) {
+    if (candidate && candidate.id !== loggedInCandidateId) {
       return {
         found: true,
         candidateId: candidate.id,

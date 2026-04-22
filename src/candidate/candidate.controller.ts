@@ -21,8 +21,20 @@ export class CandidateController {
   constructor(private readonly candidateService: CandidateService) {}
 
   @Post('check-email')
-  checkEmail(@Body() dto: CheckEmailDto) {
-    return this.candidateService.checkByEmail(dto.email);
+  checkEmail(@Body() dto: CheckEmailDto, @Request() req: any) {
+    let loggedInCandidateId: string | undefined = undefined;
+    const authHeader = req.headers?.authorization;
+    if (authHeader && authHeader.startsWith('Bearer ')) {
+      try {
+        const token = authHeader.split(' ')[1];
+        const payloadBase64 = token.split('.')[1];
+        if (payloadBase64) {
+          const decoded = JSON.parse(Buffer.from(payloadBase64, 'base64').toString('utf8'));
+          loggedInCandidateId = decoded.sub;
+        }
+      } catch (e) {}
+    }
+    return this.candidateService.checkByEmail(dto.email, loggedInCandidateId);
   }
 
   @Post('register')
