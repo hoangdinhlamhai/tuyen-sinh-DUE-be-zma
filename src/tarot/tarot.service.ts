@@ -230,4 +230,29 @@ export class TarotService {
       take: 20,
     });
   }
+
+  /**
+   * Cập nhật session sau khi user liên kết Zalo (guest → linked)
+   */
+  async updateSession(
+    sessionId: number,
+    data: { zaloUserId?: string; candidateId?: string; playerName?: string },
+  ) {
+    const session = await this.prisma.tarotSession.findUnique({
+      where: { id: sessionId },
+    });
+
+    if (!session) {
+      throw new HttpException('Không tìm thấy phiên bốc bài', HttpStatus.NOT_FOUND);
+    }
+
+    return this.prisma.tarotSession.update({
+      where: { id: sessionId },
+      data: {
+        ...(data.zaloUserId && { zaloUserId: data.zaloUserId }),
+        ...(data.candidateId && { candidateId: data.candidateId }),
+        ...(data.playerName && { playerName: data.playerName }),
+      },
+    });
+  }
 }
