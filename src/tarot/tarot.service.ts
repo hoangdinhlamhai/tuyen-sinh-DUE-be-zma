@@ -1,8 +1,14 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { DrawCardDto } from './dto/draw-card.dto';
+import { randomBytes } from 'crypto';
 
 const DAILY_PLAY_LIMIT = 3;
+
+interface JwtUser {
+  candidateId?: string;
+  zaloId?: string;
+}
 
 @Injectable()
 export class TarotService {
@@ -11,7 +17,7 @@ export class TarotService {
   /**
    * Bốc bài Tarot: random 1 lá từ DB, tính trúng quà, lưu session
    */
-  async drawCard(dto: DrawCardDto) {
+  async drawCard(dto: DrawCardDto, user?: JwtUser) {
     // 1. Check daily play limit
     if (dto.zaloUserId) {
       const today = new Date();
@@ -54,10 +60,24 @@ export class TarotService {
     const randomIndex = Math.floor(Math.random() * activeCards.length);
     const selectedCard = activeCards[randomIndex];
 
-    // 4. Tạo TarotSession record (chưa xác định win hay không - sẽ roll khi nhấn "Nhận quà")
+    // 4. Tạo sessionToken và playId
+    const sessionToken = randomBytes(32).toString('hex');
+    const lastSession = await this.prisma.tarotSession.findFirst({
+      orderBy: { playId: 'desc' },
+    });
+    const playId = (lastSession?.playId ?? 0) + 1;
+
+    // 5. Xác định candidateId (từ JWT user hoặc dto)
+    const candidateId = user?.candidateId || dto.candidateId || null;
+    const zaloUserId = dto.zaloUserId || user?.zaloId || null;
+
+    // 6. Tạo TarotSession record
     const session = await this.prisma.tarotSession.create({
       data: {
-        zaloUserId: dto.zaloUserId || null,
+        playId,
+        sessionToken,
+        candidateId,
+        zaloUserId,
         playerName: dto.playerName,
         cardId: selectedCard.id,
         tarotCardId: selectedCard.name,
@@ -71,9 +91,11 @@ export class TarotService {
       },
     });
 
-    // 5. Trả về kết quả
+    // 7. Trả về kết quả
     return {
       sessionId: session.id,
+      playId: session.playId,
+      sessionToken: session.sessionToken,
       card: {
         id: selectedCard.id,
         name: selectedCard.name,
@@ -96,7 +118,7 @@ export class TarotService {
   /**
    * Nhận quà từ phiên bốc bài - roll xem có trúng không
    */
-  async claimGift(sessionId: number, zaloUserId: string) {
+  async claimGift(sessionId: number, zaloUserId: string, user?: JwtUser) {
     const session = await this.prisma.tarotSession.findUnique({
       where: { id: sessionId },
     });

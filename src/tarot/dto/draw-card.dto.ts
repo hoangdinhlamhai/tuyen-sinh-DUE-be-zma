@@ -5,6 +5,10 @@ export class DrawCardDto {
   @IsString()
   zaloUserId?: string;
 
+  @IsOptional()
+  @IsString()
+  candidateId?: string;
+
   @IsString()
   playerName: string;
 
