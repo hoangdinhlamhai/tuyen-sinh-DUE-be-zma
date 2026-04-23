@@ -129,6 +129,15 @@ export class CandidateService {
       }
     }
 
+    if (candidate.ward && !candidate.ward.includes('Phường') && !candidate.ward.includes('Xã') && !candidate.ward.includes('Thị trấn')) {
+      const ward = await this.prisma.ward.findUnique({
+        where: { id: candidate.ward },
+      });
+      if (ward) {
+        candidate.ward = ward.name;
+      }
+    }
+
     return candidate;
   }
 
