@@ -111,6 +111,24 @@ export class CandidateService {
       throw new NotFoundException(`Candidate with id "${id}" not found`);
     }
 
+    if (candidate.provinceCode && !candidate.province) {
+      const province = await this.prisma.province.findUnique({
+        where: { id: candidate.provinceCode },
+      });
+      if (province) {
+        candidate.province = province.name;
+      }
+    }
+
+    if (candidate.highSchoolCode && !candidate.highSchool) {
+      const school = await this.prisma.highSchool.findUnique({
+        where: { id: candidate.highSchoolCode },
+      });
+      if (school) {
+        candidate.highSchool = school.name;
+      }
+    }
+
     return candidate;
   }
 
