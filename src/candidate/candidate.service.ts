@@ -18,13 +18,13 @@ export class CandidateService {
     });
 
     if (candidate && candidate.id !== loggedInCandidateId) {
-      // If candidate only exists from tarot flow (not a real registration),
+      // If candidate only exists from tarot flow or is pending without a linked Zalo account
       // allow them to proceed with scholarship registration using this email
-      if (candidate.profileStatus === 'tarot_lead') {
+      if (candidate.profileStatus === 'tarot_lead' || (candidate.profileStatus === 'pending' && !candidate.zaloId)) {
         return {
           found: false,
           existingCandidateId: candidate.id,
-          message: 'Email chưa được đăng ký chính thức',
+          message: 'Email có thể tiếp tục sử dụng',
         };
       }
 
@@ -47,8 +47,8 @@ export class CandidateService {
     });
 
     if (existingEmail && existingEmail.id !== loggedInCandidateId) {
-      // If existing candidate is just a tarot_lead, upgrade it to a real registration
-      if (existingEmail.profileStatus === 'tarot_lead') {
+      // If existing candidate is just a tarot_lead or pending without Zalo, it can be updated safely
+      if (existingEmail.profileStatus === 'tarot_lead' || (existingEmail.profileStatus === 'pending' && !existingEmail.zaloId)) {
         await this.prisma.candidate.update({
           where: { id: existingEmail.id },
           data: {
@@ -68,7 +68,7 @@ export class CandidateService {
         return {
           success: true,
           candidateId: existingEmail.id,
-          message: 'Đăng ký thành công (nâng cấp từ Tarot)',
+          message: 'Đăng ký thành công (cập nhật hồ sơ)',
         };
       }
 
