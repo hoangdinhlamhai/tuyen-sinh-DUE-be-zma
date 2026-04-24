@@ -61,6 +61,10 @@ export class CandidateService {
             ward: dto.contactWard,
             address: dto.contactStreet,
             highSchoolCode: dto.highSchoolCode,
+            priority1: dto.priority1 || null,
+            priority2: dto.priority2 || null,
+            priority3: dto.priority3 || null,
+            admissionMethods: dto.methods || [],
             profileStatus: 'pending',
           },
         });
@@ -95,6 +99,10 @@ export class CandidateService {
             ward: dto.contactWard,
             address: dto.contactStreet,
             highSchoolCode: dto.highSchoolCode,
+            priority1: dto.priority1 || null,
+            priority2: dto.priority2 || null,
+            priority3: dto.priority3 || null,
+            admissionMethods: dto.methods || [],
             profileStatus: existingCandidate.profileStatus === 'linked' ? 'pending' : existingCandidate.profileStatus,
           },
         });
@@ -123,6 +131,10 @@ export class CandidateService {
         ward: dto.contactWard,
         address: dto.contactStreet,
         highSchoolCode: dto.highSchoolCode,
+        priority1: dto.priority1 || null,
+        priority2: dto.priority2 || null,
+        priority3: dto.priority3 || null,
+        admissionMethods: dto.methods || [],
         profileStatus: 'pending',
       },
     });
@@ -139,6 +151,9 @@ export class CandidateService {
       where: { id },
       include: {
         registrations: true,
+        majorRef1: { select: { name: true } },
+        majorRef2: { select: { name: true } },
+        majorRef3: { select: { name: true } },
       },
     });
 
@@ -173,7 +188,12 @@ export class CandidateService {
       }
     }
 
-    return candidate;
+    return {
+      ...candidate,
+      priority1Name: candidate.majorRef1?.name || null,
+      priority2Name: candidate.majorRef2?.name || null,
+      priority3Name: candidate.majorRef3?.name || null,
+    };
   }
 
   async getByZaloId(zaloId: string) {
